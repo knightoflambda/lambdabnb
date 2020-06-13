@@ -1915,6 +1915,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     title: String,
@@ -1942,10 +1944,76 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     BookableListItem: _BookableListItem__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  computed: {
+    rows: function rows() {
+      return this.bookables == null ? 0 : Math.ceil(this.bookables.length / this.columns);
+    }
+  },
+  methods: {
+    bookables_in_row: function bookables_in_row(row) {
+      return this.bookables.slice((row - 1) * this.columns, row * this.columns);
+    },
+    placeholders_in_row: function placeholders_in_row(row) {
+      return this.columns - this.bookables_in_row(row).length;
+    }
+  },
+  data: function data() {
+    return {
+      columns: 3
+    };
+  },
+  created: function created() {
+    this.bookables = [{
+      title: "some title here",
+      content: "some content here",
+      price: 1000
+    }, {
+      title: "some title here",
+      content: "some content here",
+      price: 1000
+    }, {
+      title: "some title here",
+      content: "some content here",
+      price: 1000
+    }, {
+      title: "some title here",
+      content: "some content here",
+      price: 1000
+    }, {
+      title: "some title here",
+      content: "some content here",
+      price: 1000
+    }, {
+      title: "some title here",
+      content: "some content here",
+      price: 1000
+    }, {
+      title: "some title here",
+      content: "some content here",
+      price: 1000
+    }];
   }
 });
 
@@ -37527,10 +37595,14 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v(" " + _vm._s(_vm.title) + " ")]),
-    _vm._v(" "),
-    _c("p", [_vm._v(" " + _vm._s(_vm.content) + " ")])
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [
+        _vm._v(" " + _vm._s(_vm.title) + " ")
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(_vm.content))])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -37555,27 +37627,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("bookable-list-item", {
-        attrs: {
-          title: "Villa 1",
-          content: "A really cheap Villa",
-          price: 1000
-        }
-      }),
-      _vm._v(" "),
-      _c("bookable-list-item", {
-        attrs: {
-          title: "Villa 2",
-          content: "A really cheap Villa with two storeys",
-          price: 2000
-        }
-      })
-    ],
-    1
-  )
+  return _c("div", [
+    this.bookables != null
+      ? _c(
+          "div",
+          _vm._l(_vm.rows, function(row) {
+            return _c(
+              "div",
+              { key: "row" + row, staticClass: "row" },
+              [
+                _vm._l(_vm.bookables_in_row(row), function(bookable, col) {
+                  return _c(
+                    "div",
+                    { key: "row" + row + col, staticClass: "col" },
+                    [
+                      _c("bookable-list-item", {
+                        key: _vm.index,
+                        attrs: {
+                          title: bookable.title,
+                          content: bookable.content,
+                          price: bookable.price
+                        }
+                      })
+                    ],
+                    1
+                  )
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.placeholders_in_row(row), function(
+                  placeholder,
+                  idx
+                ) {
+                  return _c("div", { key: idx, staticClass: "col" })
+                })
+              ],
+              2
+            )
+          }),
+          0
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
