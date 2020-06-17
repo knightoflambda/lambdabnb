@@ -1,17 +1,17 @@
 <template>
   <div>
     <div v-if="this.bookables != null">
-      <div class="row" v-for="row in rows" :key="'row' + row">
+      <div class="row mb-4" v-for="row in rows" :key="'row' + row">
         <div
-          class="col"
+          class="col d-flex align-items-stretch"
           v-for="(bookable, col) in bookables_in_row(row)"
           :key="'row' + row + col"
         >
           <bookable-list-item
             :title="bookable.title"
-            :content="bookable.content"
+            :description="bookable.description"
             :price="bookable.price"
-            :key="index"
+            :key="bookable.id"
           ></bookable-list-item>
         </div>
 
@@ -45,47 +45,17 @@ export default {
   },
   data() {
     return {
-      columns: 3
+      columns: 3,
+      bookables: null
     };
   },
   created() {
-    this.bookables = [
-      {
-        title: "some title here",
-        content: "some content here",
-        price: 1000
-      },
-      {
-        title: "some title here",
-        content: "some content here",
-        price: 1000
-      },
-      {
-        title: "some title here",
-        content: "some content here",
-        price: 1000
-      },
-      {
-        title: "some title here",
-        content: "some content here",
-        price: 1000
-      },
-      {
-        title: "some title here",
-        content: "some content here",
-        price: 1000
-      },
-      {
-        title: "some title here",
-        content: "some content here",
-        price: 1000
-      },
-      {
-        title: "some title here",
-        content: "some content here",
-        price: 1000
-      }
-    ];
+    const req = axios
+      .get("/api/bookables")
+      .then(response => {
+        this.bookables = response.data;
+      });
+    
   }
 };
 </script>
