@@ -1,27 +1,23 @@
 <template>
-  <div>
-    <div v-if="this.bookable != null">
-      <div class="row mb-4">
-        <div class="col d-flex align-items-stretch">
-          <bookable-list-item
-            :title="bookable.title"
-            :description="bookable.description"
-            :price="bookable.price"
-            :key="bookable.id"
-          ></bookable-list-item>
+    <div v-if="this.bookable != null" class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h2>{{ bookable.title }}</h2>
+            <hr/>
+            <article> {{ bookable.description }} </article>
+          </div>
         </div>
       </div>
+      <div class="col-md-4">
+          <h3>availability & prices</h3>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
-import BookableListItem from "../bookables/BookableListItem";
 
 export default {
-  components: {
-    BookableListItem  
-  },
   data() {
     return {
       bookable: null,
