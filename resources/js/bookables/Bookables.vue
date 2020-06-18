@@ -48,7 +48,7 @@ export default {
     const req = axios
       .get("/api/bookables")
       .then(response => {
-        this.bookables = response.data;
+        this.bookables = response.data.data;
       });
     
   }

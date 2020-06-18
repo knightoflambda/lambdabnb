@@ -1937,7 +1937,7 @@ __webpack_require__.r(__webpack_exports__);
 
     this.id = this.$route.params.id;
     var request = axios.get("/api/bookables/".concat(this.id)).then(function (response) {
-      _this.bookable = response.data;
+      _this.bookable = response.data.data;
     });
   }
 });
@@ -2032,7 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     var req = axios.get("/api/bookables").then(function (response) {
-      _this.bookables = response.data;
+      _this.bookables = response.data.data;
     });
   }
 });
