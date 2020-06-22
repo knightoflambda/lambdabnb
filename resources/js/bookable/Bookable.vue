@@ -1,6 +1,6 @@
 <template>
     <div v-if="this.bookable != null" class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 pb-4">
         <div class="card">
           <div class="card-body">
             <h2>{{ bookable.title }}</h2>
@@ -9,15 +9,19 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-          <h3>availability & prices</h3>
+      <div class="col-md-4 pb-4">
+          <Availability></Availability>
       </div>
     </div>
 </template>
 
 <script>
+import Availability from "./Availability"
 
 export default {
+  components:{
+    Availability
+  },
   data() {
     return {
       bookable: null,
