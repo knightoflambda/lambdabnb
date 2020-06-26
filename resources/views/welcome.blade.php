@@ -10,8 +10,8 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Script -->
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
-        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
+        <script src="/js/app.js" defer></script>
+        <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
         <div id="app">
