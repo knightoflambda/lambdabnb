@@ -8,6 +8,7 @@
             <article> {{ bookable.description }} </article>
           </div>
         </div>
+        <ReviewList></ReviewList>
       </div>
       <div class="col-md-4 pb-4">
           <Availability></Availability>
@@ -17,10 +18,12 @@
 
 <script>
 import Availability from "./Availability"
+import ReviewList from "./ReviewList"
 
 export default {
   components:{
-    Availability
+    Availability,
+    ReviewList
   },
   data() {
     return {

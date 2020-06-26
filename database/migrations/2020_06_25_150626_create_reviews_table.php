@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookingsTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +14,18 @@ class CreateBookingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bookings', function (Blueprint $table) {
-            $table->id();
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->timestamps();
 
-            $table->date('from');
-            $table->date('to');
+            $table->unsignedTinyInteger('rating');
+            $table->text('content');
 
             $table->unsignedBigInteger('bookable_id')->index();
             $table->foreign('bookable_id')->references('id')->on('bookables');
 
+            $table->unsignedBigInteger('booking_id')->index()->nullable();
+            $table->foreign('booking_id')->references('id')->on('bookables');
         });
     }
 
@@ -35,7 +37,7 @@ class CreateBookingsTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('reviews');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
